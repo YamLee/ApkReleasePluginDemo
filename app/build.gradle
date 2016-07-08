@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+apply plugin: "me.yamlee.apkrelease"
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        applicationId "me.yamlee.demo"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+}
+
+apkRelease{
+    logIdentifyTag = "*"
+
+    apkDistribute {
+        previewRelease {
+            //preview
+            pgyerApiKey = "fb914b7d5b72fc11622cafaa3dfb183f"
+            pgyerUserKey = "ebdbfa7770bec238a0e9770e79459210"
+        }
+        qaTestRelease {
+            pgyerApiKey = "3d109b16b9b16a8442eb601956c8f8af"
+            pgyerUserKey = "9f7e464c5841eed38ef33709d5f8cd8a"
+        }
+        storeRelease {
+            pgyerApiKey = "6cbe6c20c8c3e528b0047bca90a42ccf"
+            pgyerUserKey = "2a077e9be391b99b0b0eaff0082e3c3e"
+        }
+    }
+}
