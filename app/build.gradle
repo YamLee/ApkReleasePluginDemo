@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: "me.yamlee.apkrelease"
 
 android {
+    def global = project.extensions.ext
     compileSdkVersion 24
     buildToolsVersion "24.0.0"
 
@@ -9,8 +10,8 @@ android {
         applicationId "me.yamlee.demo"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode global.versionCode
+        versionName global.versionName
     }
     buildTypes {
         release {
@@ -19,14 +20,7 @@ android {
         }
     }
     productFlavors {
-        //预览版发布
-        preview{
-            manifestPlaceholders = [channelName: "preview", isFirstLauncher: "false"]
-        }
-        //qa测试版本发布
-        qaTest{
-            manifestPlaceholders = [channelName: "qaTest", isFirstLauncher: "false"]
-        }
+
         //市场版本发布,release
         store{
             manifestPlaceholders = [channelName: "store", isFirstLauncher: "false"]
@@ -40,3 +34,13 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0'
 }
 
+apkRelease{
+    logIdentifyTag = "*"
+
+    apkDistribute {
+        storeRelease {
+            pgyerApiKey = "d850a2d47152c163ce9e58dc70ce3db6"
+            pgyerUserKey = "5a1b726ce3904b2de445234f6fa4bb6c"
+        }
+    }
+}
