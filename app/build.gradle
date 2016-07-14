@@ -13,19 +13,40 @@ android {
         versionCode global.versionCode
         versionName global.versionName
     }
+
+    signingConfigs {
+        debug {
+            storeFile file("../demo.keystore")
+            storePassword "123456"
+            keyAlias "demo"
+            keyPassword "123456"
+        }
+        release {
+            storeFile file("../demo.keystore")
+            storePassword "123456"
+            keyAlias "demo"
+            keyPassword "123456"
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            signingConfig signingConfigs.release
+        }
     }
-    productFlavors {
 
+    productFlavors {
         //市场版本发布,release
-        store{
+        store {
             manifestPlaceholders = [channelName: "store", isFirstLauncher: "false"]
         }
     }
+
 }
 
 dependencies {
@@ -34,7 +55,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0'
 }
 
-apkRelease{
+apkRelease {
     logIdentifyTag = "*"
     branchName = 'test'
     apkDistribute {
