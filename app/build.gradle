@@ -36,9 +36,9 @@ dependencies {
 
 apkRelease{
     logIdentifyTag = "*"
-
+    branchName = 'test'
     apkDistribute {
-        store {
+        storeRelease {
             pgyerApiKey = "d850a2d47152c163ce9e58dc70ce3db6"
             pgyerUserKey = "5a1b726ce3904b2de445234f6fa4bb6c"
         }
