@@ -16,13 +16,13 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("../demo.keystore")
+            storeFile file("../demo.keystore.jks")
             storePassword "123456"
             keyAlias "demo"
             keyPassword "123456"
         }
         release {
-            storeFile file("../demo.keystore")
+            storeFile file("../demo.keystore.jks")
             storePassword "123456"
             keyAlias "demo"
             keyPassword "123456"
@@ -36,7 +36,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
         }
     }
 
